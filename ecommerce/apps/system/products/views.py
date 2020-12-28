@@ -59,22 +59,31 @@ def product_list_view(request):
  
     
 
-class ProductDetailView(DetailView):
+class ProductDetailSlugView(DetailView):
     queryset = Product.objects.all()
     template_name = 'products/product_detail.html'
     context_object_name  = 'obj'
     
+    def get_object(self, *args, **kwargs):
+        request = self.request
+        slug = self.kwargs.get('slug')
+        #instance= get_object_or_404(Product, slug=slug)
+        try:
+            instance= Product.objects.get(slug=slug, active=True)
+        except Product.DoesNotExist:
+            raise Http404("Not found...")
+        except Product.MultipleObjectsReturned:
+            qs = Product.objects.filter(slug=slug, activate=True)
+            instance = qs.first()
+        except:
+            raise Http404("wowwwww")
+        return instance
     
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(ProductDetailView, self).get_context_data(*args,**kwargs)
-    #     return context
     
-    
-    
-def product_detail_view(request, pk=None, *args, **kwargs):
+def product_detail_view(request, pk=None,  *args, **kwargs):
     template_name = "products/product_detail.html"
     #obj = Product.objects.get(id=pk)
-    obj = get_object_or_404(Product, id=pk, featured=True)
+    obj = get_object_or_404(Product, id = pk,  featured=True)
     context={
         'obj': obj
     }
