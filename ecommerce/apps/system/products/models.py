@@ -52,6 +52,10 @@ class Product(models.Model):
     #we must let the model know about the change 
     objects = ProductManager()
     
+    def get_absolute_url(self):
+        return "/product/{slug}/".format(slug=self.slug)
+        #/product/{slug}/ not name in urlpattern
+    
     
     
     #this is for python 3    

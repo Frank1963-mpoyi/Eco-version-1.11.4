@@ -8,19 +8,19 @@ from  .models import Product
 
 
 
-class ProductFeaturedListView(ListView):
+# class ProductFeaturedListView(ListView):
     #template_name = 'products/list.html'
     
-    def get_queryset(self, *args, **kwargs):
-        request = self.request
+    # def get_queryset(self, *args, **kwargs):
+        # request = self.request
         #return Product.objects.featured()
-        return Product.objects.all().featured()
+        # return Product.objects.all().featured()
 
 
 
-class ProductFeaturedDetailView(DetailView):
-    template_name = "products/featured-detail.html"
-    queryset = Product.objects.all().featured()
+# class ProductFeaturedDetailView(DetailView):
+    # template_name = "products/featured-detail.html"
+    # queryset = Product.objects.all().featured()
     
     # def get_queryset(self, *args, **kwargs):
     #     request = self.request
@@ -44,15 +44,15 @@ class ProductFeaturedDetailView(DetailView):
 
 class ProductListView(ListView):
     queryset = Product.objects.all()
-    #template_name = 'product/product_list_view' //default template for class view
+    template_name = 'products/product-list.html'
 
-def product_list_view(request):
-    template_name = "products/product_list.html"
-    queryset = Product.objects.all()
-    context={
-        'object_list': queryset
-    }
-    return render(request, template_name, context)
+# def product_list_view(request):
+#     template_name = "products/product_list.html"
+#     queryset = Product.objects.all()
+#     context={
+#         'object_list': queryset
+#     }
+#     return render(request, template_name, context)
         
         
 
@@ -80,13 +80,13 @@ class ProductDetailSlugView(DetailView):
         return instance
     
     
-def product_detail_view(request, pk=None,  *args, **kwargs):
-    template_name = "products/product_detail.html"
-    #obj = Product.objects.get(id=pk)
-    obj = get_object_or_404(Product, id = pk,  featured=True)
-    context={
-        'obj': obj
-    }
-    return render(request, template_name, context)
+# def product_detail_view(request, pk=None,  *args, **kwargs):
+#     template_name = "products/product_detail.html"
+#     #obj = Product.objects.get(id=pk)
+#     obj = get_object_or_404(Product, id = pk,  featured=True)
+#     context={
+#         'obj': obj
+#     }
+#     return render(request, template_name, context)
         
 

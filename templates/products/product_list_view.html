@@ -4,8 +4,8 @@
 {% block content %}
 
 {% for list in object_list %}
-    <p>{{object_list.title}}</p>
-    <p>{{list.description}}</p>
+    <a href="{{ list.get_absolute_url }}">{{list.description}}</a>
+
     <p>{{list.price}}</p>
 {% endfor %}
 
