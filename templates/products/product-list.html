@@ -3,13 +3,23 @@
 
 {% block content %}
 
-{% for list in object_list %}
 
-{% include 'products/snippet/card.html'  with instance=list %}
+<div class="contaniner">
+    <div class="row">
+        {% for list in object_list %}
+        <div class="col">
+            {% include 'products/snippet/card.html'  with instance=list %}
+            
+            <p>{{list.description}}</p>
+            <p>{{list.price}}</p>
+        
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
     <!-- "{{ list.get_absolute_url }}" it from model for detail views -->
     
-    <p>{{list.description}}</p>
-    <p>{{list.price}}</p>
-{% endfor %}
+
 
 {% endblock content %}

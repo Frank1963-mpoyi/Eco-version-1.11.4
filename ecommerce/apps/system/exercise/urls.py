@@ -5,7 +5,7 @@ from .views import(
     login_page,
     ) 
 
-
+app_name="exercise"
 urlpatterns = [
     url(r'^$',home_view),
     url(r'^contact/$',contact_page, name="contact"),

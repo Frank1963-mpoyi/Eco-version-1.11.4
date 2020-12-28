@@ -5,7 +5,7 @@ from .utility import unique_slug_generator
 # need to happen before the model save
 from django.db.models.signals import pre_save, post_save
 #pre_save mean before save in the database it must do something and we must create a method to handle that
-
+from django.urls import reverse
 
 # if we want to query this: Products.objects.all().featured
 class ProductQuerySet(models.query.QuerySet):
@@ -53,10 +53,11 @@ class Product(models.Model):
     objects = ProductManager()
     
     def get_absolute_url(self):
-        return "/product/{slug}/".format(slug=self.slug)
+        #return "/product/{slug}/".format(slug=self.slug)
         #/product/{slug}/ not name in urlpattern
-    
-    
+        return reverse("products:detail", kwargs={"slug":self.slug})
+        # it doing the same thing than return above but here it use the name="detail" instead of url(r'^product/$',  )
+        # mean the name detail is unique to the apps products beacause they can be the same name in different apps
     
     #this is for python 3    
     def __str__(self):
