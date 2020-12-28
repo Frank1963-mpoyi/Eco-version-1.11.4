@@ -1,0 +1,15 @@
+
+
+
+{% block content %}
+
+
+    <p>{{obj.title}}</p>
+    <p>{{obj.description}}</p>
+    
+{% if obj.image %}
+    <img src="{{obj.image.url}}" alt="">
+{% endif %}
+
+{% endblock content %}
+
