@@ -26,8 +26,7 @@ def contact_page(request):
     '''
     if form.is_valid():
         print(form.cleaned_data)
-        # we will still see the data in console like above    
-    
+        # we will still see the data in console like above        
     return render (request, template_name, context)
 
 

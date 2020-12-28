@@ -7,8 +7,9 @@ from .views import(
 
 app_name="exercise"
 urlpatterns = [
-    url(r'^$',home_view),
+    url('home',home_view, name="home"),
     url(r'^contact/$',contact_page, name="contact"),
     url(r'^login/$',login_page, name="login")
 
 ]
+# if there is app_name dont leave urls pattern blank
