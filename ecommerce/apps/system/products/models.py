@@ -1,6 +1,7 @@
 import random
 import os
 from django.db import models
+from django.db.models import Q
 from .utility import unique_slug_generator
 # need to happen before the model save
 from django.db.models.signals import pre_save, post_save
@@ -15,7 +16,9 @@ class ProductQuerySet(models.query.QuerySet):
     def featured(self):
         return self.filter(featured=True, active=True)
 
-
+    def search(self, query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query)
+        return self.filter(lookups).distinct()
 
 class ProductManager(models.Manager):
     # with this queryset : Products.objects.featured
@@ -39,6 +42,9 @@ class ProductManager(models.Manager):
     #         return qs.first()
     #     return none
 
+    def search(self, query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query)
+        return self.get_queryset().active().search(query)                       #filter(lookups).distinct()# can search also active
 
 
 class Product(models.Model):
