@@ -1,15 +1,23 @@
-
+{% extends 'base.html' %}
 
 
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 style="text-transform: uppercase;">{{obj.title}}</h1>
+                <!-- {{obj.timestamp|timesince}} ago -->
+                <p>{{obj.description|linebreaks}}</p>
+                
+            {% if obj.image %}
+                <img src="{{obj.image.url}}" alt="">
+            {% endif %}
+            
 
+            </div>
+        </div>
+    </div>
 
-    <p>{{obj.title}}</p>
-    <p>{{obj.description}}</p>
-    
-{% if obj.image %}
-    <img src="{{obj.image.url}}" alt="">
-{% endif %}
 
 {% endblock content %}
 

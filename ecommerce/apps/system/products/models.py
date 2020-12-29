@@ -49,6 +49,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/', null=True, blank=True)# filefield is a standard field , dont put slash infront product
     featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     #we must let the model know about the change 
     objects = ProductManager()
     

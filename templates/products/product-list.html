@@ -1,25 +1,24 @@
+
 {% extends 'base.html' %}
 
 
 {% block content %}
 
 
-<div class="contaniner">
     <div class="row">
+
         {% for list in object_list %}
-        <div class="col">
+            <div class="col">
+            {{ forloop.counter }}
             {% include 'products/snippet/card.html'  with instance=list %}
-            
-            <p>{{list.description}}</p>
-            <p>{{list.price}}</p>
         
-        </div>
+            {% if forloop.counter|divisibleby:2 %}
+                </div> </div><div class='row'> <div class='col-12'><hr/></div>
+            {% else %}
+            </div>
+            {% endif %}
+        
         {% endfor %}
     </div>
-</div>
 
-    <!-- "{{ list.get_absolute_url }}" it from model for detail views -->
-    
-
-
-{% endblock content %}
+{% endblock %}

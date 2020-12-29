@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.views.generic import TemplateView
 from .views import (
     ProductListView,
     #product_list_view,
@@ -12,6 +13,7 @@ from .views import (
 app_name = "products"
 urlpatterns = [
     # url(r'^product/$', product_list_view, name="product"),
+    url(r'^bootstrap/$',TemplateView.as_view(template_name="bootstrap/exemple.html"), name="bootstrap"),
     url(r'^product/$',ProductListView.as_view(), name="product"),
     url(r'^product/(?P<slug>[\w-]+)/$',ProductDetailSlugView.as_view(), name="detail"),
     #url(r'^product-fbv/(?P<pk>\d+)/$',product_detail_view, name="product"),
