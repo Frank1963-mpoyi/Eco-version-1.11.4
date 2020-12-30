@@ -21,7 +21,8 @@ class ProductQuerySet(models.query.QuerySet):
             
             Q(title__icontains=query) | 
             Q(description__icontains=query) |
-            Q(price__icontains=query)
+            Q(price__icontains=query) |
+            Q(tag__title__icontains=query)# tag name of model, title name of the field of tag and will list out all the related model
             
             )
         return self.filter(lookups).distinct()

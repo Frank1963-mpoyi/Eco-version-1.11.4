@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',# session will rember thing it will be store in the database, in the cookie
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
